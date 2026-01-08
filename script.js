@@ -11,13 +11,29 @@ function generatePassword() {
     return pass;
 }
 
-function copyTextToClipBoard(passwordButton) {
-    passwordButton.select();
-    passwordButton.selectionRange(0, 9999);
+function copyTextToClipBoard(passwordElement) {
+    const text = passwordElement.textContent;
 
-    navigator.clipboard.writeText(passwordButton.value);
+    if (!text) {
+        return; // Nothing to copy
+    }
 
-    console.log(`Copied ${passwordButton.value} to clipboard`);
+    navigator.clipboard.writeText(text)
+        .then(() => {
+            originalText = text;
+            passwordElement.textContent = `Copied`;
+            passwordElement.style.backgroundColor = '#059669';
+
+            setTimeout(() => {
+                passwordElement.textContent = originalText;
+                passwordElement.style.backgroundColor = '#273549';
+            }, 1000);
+
+        })
+        .catch(err => {
+            console.log('Failed to copy:', err);
+        });
+
 
 }
 
