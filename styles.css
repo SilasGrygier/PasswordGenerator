@@ -34,7 +34,7 @@
 
   /* Colors */
   --color-bg-primary: #1f2937;
-  --color-bg-password: #273549;
+  --color-bg-password: #3a4f6c;
   --color-text-primary: white;
   --color-text-secondary: #d5d4d8;
   --color-accent-green: #10b981;
@@ -87,19 +87,44 @@ body {
 }
 
 .btn-generate {
+  /* Layout */
   display: inline-block;
   align-self: flex-start;
-  line-height: 1.5;
+
+  /* Typography */
   font-family: "Inter", sans-serif;
   font-size: var(--step-0);
   font-weight: 500;
+  line-height: 1.5;
   text-shadow: 0 1px 2px var(--color-shadow);
-  padding: var(--space-2xs-xs) var(--space-xs-s);
+
+  /* Colors */
   color: var(--color-text-primary);
   background-color: var(--color-accent-green);
+
+  /* Spacing */
+  padding: var(--space-2xs-xs) var(--space-xs-s);
+  margin-bottom: var(--space-m-l);
+
+  /* Visual */
+  transition: all 0.2s ease;
   border: none;
   border-radius: 0.3rem;
-  margin-bottom: var(--space-m-l);
+  min-height: 2.75rem; /* WCAG standard - Ensures minimal size on small devices */
+
+  /* Interaction */
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.btn-generate:hover {
+  transform: translateY(-2px);
+  color: var(--color-password-text);
+  background-color: var(--color-bg-password);
+}
+
+.btn-generate:active {
+  transform: translateY(0) scale(0.95);
 }
 
 .separator {
@@ -110,20 +135,62 @@ body {
 .generated-passwords {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   text-align: center;
   gap: var(--space-l-xl);
+  touch-action: manipulation;
+  transition: all 0.2s ease;
 }
 
 .password {
-  font-size: var(--step-0);
-  color: var(--color-password-text);
-  background-color: var(--color-bg-password);
-  flex: 0.4;
-  padding: var(--space-xs-s);
-  min-height: var(--space-xl-2xl);
-
+  /* Layout */
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1 1 200px;
+
+  /* Typography */
+  font-size: var(--step-0);
   text-align: center;
+  word-break: break-all;
+
+  /* Colors */
+  color: var(--color-password-text);
+  background-color: var(--color-bg-password);
+
+  /* Spacing */
+  padding: var(--space-xs-s);
+  min-height: var(--space-xl-2xl);
+
+  /* Visual */
+  border-radius: var(--space-xs);
+
+  /* Interaction */
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+
+  /* Animation */
+  transition: background-color 0.4s ease, transform 0.1s ease;
+}
+
+.password:hover {
+  color: white;
+  background-color: var(--color-accent-green);
+  transform: translateY(-2px);
+}
+
+.password.copied {
+  background-color: #059669;
+  animation: copyBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes copyBounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
 }

@@ -14,21 +14,21 @@ function generatePassword() {
 function copyTextToClipBoard(passwordElement) {
     const text = passwordElement.textContent;
 
-    if (!text) {
+    if (!text || text === '✓ Copied!') {
         return; // Nothing to copy
     }
 
     navigator.clipboard.writeText(text)
         .then(() => {
-            originalText = text;
-            passwordElement.textContent = `Copied`;
-            passwordElement.style.backgroundColor = '#059669';
+            // Add animation class
+            passwordElement.classList.add('copied');
+            const originalText = text;
+            passwordElement.textContent = '✓ Copied!';
 
             setTimeout(() => {
                 passwordElement.textContent = originalText;
-                passwordElement.style.backgroundColor = '#273549';
-            }, 1000);
-
+                passwordElement.classList.remove('copied');
+            }, 1200);
         })
         .catch(err => {
             console.log('Failed to copy:', err);
