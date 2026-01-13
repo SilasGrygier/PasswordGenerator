@@ -98,27 +98,26 @@ label {
   margin-bottom: var(--space-l);
 }
 
-.slider-container {
+.password-settings {
   display: flex;
   flex-direction: column;
+  gap: var(--space-m);
   margin-top: var(--space-s);
   margin-bottom: var(--space-s);
-  user-select: none;
-  gap: var(--space-2xs);
   max-width: 400px;
 }
 
-.slider-container label {
-  display: block;
+.slider-section {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  gap: var(--space-2xs);
 }
 
 #length-value {
   color: var(--color-accent-green);
   font-weight: 700;
-  min-width: 2ch;
   text-align: center;
-  display: inline-block;
-  font-variant-numeric: tabular-nums;
 }
 
 /* Slider track */
@@ -153,7 +152,7 @@ label {
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 3 px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
 }
 
 #length-slider::-webkit-slider-thumb:hover {
@@ -165,6 +164,82 @@ label {
 #length-slider::-webkit-slider-thumb:active {
   cursor: grabbing;
   transform: scale(1.05);
+}
+
+.toggle-section {
+  display: flex;
+  flex-direction: row;
+  user-select: none;
+  gap: var(--space-xl);
+  max-width: 400px;
+}
+
+.toggle-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  cursor: pointer;
+}
+
+/* Hide default checkbox */
+.toggle-input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 44px;
+  height: 24px;
+  background-color: var(--color-bg-password);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  outline: none;
+}
+
+/* Toggle switch thumb */
+.toggle-input::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--color-text-secondary);
+  top: 3px;
+  left: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Checked state */
+.toggle-input:checked {
+  background-color: var(--color-accent-green);
+}
+
+.toggle-input:checked::before {
+  left: 23px;
+  background-color: white;
+}
+
+/* Hover states */
+.toggle-input:hover {
+  background-color: color-mix(in srgb, var(--color-bg-password) 90%, white);
+}
+
+.toggle-input:checked:hover {
+  background-color: color-mix(in srgb, var(--color-accent-green) 90%, white);
+}
+
+/* Focus state for accessibility */
+.toggle-input:focus-visible {
+  outline: 2px solid var(--color-accent-green);
+  outline-offset: 2px;
+}
+
+/* Active state */
+.toggle-input:active::before {
+  width: 22px;
+}
+
+.toggle-label {
+  cursor: pointer;
 }
 
 .btn-generate {

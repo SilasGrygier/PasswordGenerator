@@ -16,11 +16,31 @@
     <h1 class="title">Generate a <br><span class="highlight-green">random password</span></h1>
     <p class="supporting-text">Never use an insecure password again.</p>
     <hr class="separator">
-    <div class="slider-container">
-        <label for="length-slider">
-            Length: <span id="length-value">15</span>
-        </label>
-        <input type="range" id="length-slider" min="8" max="32" value="15 " step="1">
+    <div class="password-settings">
+
+        <!-- Slider section -->
+        <div class="slider-section">
+            <label for="length-slider" class="slider-label">
+                Length: <span id="length-value">15</span>
+            </label>
+            <input type="range" id="length-slider" class="slider-input" min="8" max="32" value="15" step="1">
+        </div>
+
+        <!-- Toggle section -->
+        <div class="toggle-section">
+
+            <div class="toggle-item">
+                <input type="checkbox" id="toggle-numbers" class="toggle-input" checked>
+                <label for="toggle-numbers" class="toggle-label">Numbers</label>
+            </div>
+
+            <div class="toggle-item">
+                <input type="checkbox" id="toggle-symbols" class="toggle-input" checked>
+                <label for="toggle-symbols" class="toggle-label">Symbols</label>
+            </div>
+
+        </div>
+
     </div>
     <hr class="separator">
     <button class="btn-generate">Generate password</button>
