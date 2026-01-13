@@ -44,24 +44,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const slider = document.getElementById('length-slider');
     const sliderValue = document.getElementById('length-value');
 
+    // Generate on page load
+    generatePasswords();
 
-    generateBtn.addEventListener('click', function () {
+    // Generate button
+    generateBtn.addEventListener('click', generatePasswords);
+
+    // Copy text to clipboard
+    password1.addEventListener('click', () => copyTextToClipBoard(password1));
+    password2.addEventListener('click', () => copyTextToClipBoard(password2));
+
+    // Update length when slider is moved
+    slider.addEventListener('input', function () { sliderValue.textContent = this.value })
+
+    // Helper function
+    function generatePasswords() {
         const currentLength = parseInt(slider.value);
         password1.textContent = generatePassword(currentLength);
         password2.textContent = generatePassword(currentLength);
-    })
-
-    password1.addEventListener('click', function () {
-        copyTextToClipBoard(password1)
-    })
-
-    password2.addEventListener('click', function () {
-        copyTextToClipBoard(password2)
-    })
-
-    slider.addEventListener('input', function () {
-        sliderValue.textContent = this.value;
-    })
+    }
 })
 
 
