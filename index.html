@@ -15,6 +15,14 @@
 <body>
     <h1 class="title">Generate a <br><span class="highlight-green">random password</span></h1>
     <p class="supporting-text">Never use an insecure password again.</p>
+    <hr class="separator">
+    <div class="slider-container">
+        <label for="length-slider">
+            Length: <span id="length-value">15</span>
+        </label>
+        <input type="range" id="length-slider" min="8" max="32" value="15 " step="1">
+    </div>
+    <hr class="separator">
     <button class="btn-generate">Generate password</button>
     <hr class="separator">
     <div class="generated-passwords">

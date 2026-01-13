@@ -2,9 +2,9 @@ const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
     "/"];
 
 
-function generatePassword() {
+function generatePassword(passLength) {
     let pass = "";
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < passLength; i++) {
         let randomIndex = Math.floor(Math.random() * characters.length)
         pass += characters[randomIndex]
     }
@@ -41,10 +41,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const generateBtn = document.querySelector('.btn-generate');
     const password1 = document.getElementById('password1');
     const password2 = document.getElementById('password2');
+    const slider = document.getElementById('length-slider');
+    const sliderValue = document.getElementById('length-value');
+
 
     generateBtn.addEventListener('click', function () {
-        password1.textContent = generatePassword();
-        password2.textContent = generatePassword();
+        const currentLength = parseInt(slider.value);
+        password1.textContent = generatePassword(currentLength);
+        password2.textContent = generatePassword(currentLength);
     })
 
     password1.addEventListener('click', function () {
@@ -53,6 +57,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     password2.addEventListener('click', function () {
         copyTextToClipBoard(password2)
+    })
+
+    slider.addEventListener('input', function () {
+        sliderValue.textContent = this.value;
     })
 })
 
